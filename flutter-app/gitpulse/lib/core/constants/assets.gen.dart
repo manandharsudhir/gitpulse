@@ -471,6 +471,10 @@ class $AssetsImagesGen {
   AssetGenImage get imageProfileBackgroundMale =>
       const AssetGenImage('assets/images/imageProfileBackgroundMale.png');
 
+  /// File path: assets/images/img-github.png
+  AssetGenImage get imgGithub =>
+      const AssetGenImage('assets/images/img-github.png');
+
   /// File path: assets/images/nearestChurchBackground.png
   AssetGenImage get nearestChurchBackground =>
       const AssetGenImage('assets/images/nearestChurchBackground.png');
@@ -533,6 +537,7 @@ class $AssetsImagesGen {
     imageProfileBackgroundFemale,
     imageProfileBackgroundGenderNeutral,
     imageProfileBackgroundMale,
+    imgGithub,
     nearestChurchBackground,
     noArchivedInterests,
     nointernet,

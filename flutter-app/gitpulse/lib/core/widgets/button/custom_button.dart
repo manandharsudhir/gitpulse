@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gitpulse/core/configs/style/colors.dart';
 import 'package:gitpulse/core/configs/style/text_styles.dart';
 import 'package:gitpulse/core/widgets/button/button_type.dart';
+import 'package:gitpulse/core/widgets/image_builder/image_builder.dart';
 import 'package:gitpulse/core/widgets/image_builder/svg_image_builder.dart';
 
 class CustomButton extends StatefulWidget {
@@ -311,8 +312,8 @@ class _CustomButtonState extends State<CustomButton> {
                     children: [
                       Visibility(
                         visible: widget.prefixIcon != null,
-                        child: SvgImageBuilder(
-                          svgPath: widget.prefixIcon ?? '',
+                        child: ImageBuilder(
+                          url: widget.prefixIcon ?? '',
                           color: btnTextColor,
                           height: widget.prefixSize,
                           width: widget.prefixSize,
