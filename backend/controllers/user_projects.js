@@ -59,8 +59,71 @@ const addHourLog = async (req, res) => {
   }
 };
 
+const getHourLogByUserIdAndProjectId = async (req, res) => {
+  const { user_id, project_id } = req.body;
+
+  // Check if both user_id and project_id are provided in the request params
+  if (!user_id || !project_id) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide both user_id and project_id",
+    });
+  }
+
+  try {
+    // Check if the user exists
+    const userExists = await pool.query("SELECT * FROM users WHERE id=$1", [
+      user_id,
+    ]);
+    if (userExists.rowCount === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // Check if the project exists
+    const projectExists = await pool.query(
+      "SELECT * FROM projects WHERE id=$1",
+      [project_id]
+    );
+    if (projectExists.rowCount === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Project not found",
+      });
+    }
+
+    // Fetch the hour logs for the given user and project
+    const hourLogs = await pool.query(
+      "SELECT * FROM hour_logs WHERE user_id=$1 AND project_id=$2",
+      [user_id, project_id]
+    );
+
+    if (hourLogs.rowCount === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No hour logs found for this user and project",
+      });
+    }
+
+    // Respond with the hour logs
+    res.status(200).json({
+      success: true,
+      hour_logs: hourLogs.rows,
+    });
+  } catch (err) {
+    console.error("Error in getHourLogByUserIdAndProjectId:", err.message);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};
+
 module.exports = {
   addHourLog,
+  getHourLogByUserIdAndProjectId,
 };
 
 //66d6e315-b9a4-4c57-a181-d51fb1c5bd61

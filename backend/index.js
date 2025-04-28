@@ -38,7 +38,7 @@ app.use("/api/v1/auth", usersRouter);
 app.use("/api/v1/projects", projectsRouter);
 
 //logs
-app.use("/api/v1/user-projects", userProjectsRouter);
+app.use("/api/v1/hour-logs", userProjectsRouter);
 
 app.listen(4000, () => {
   console.log(`Server listening at port 4000`);
