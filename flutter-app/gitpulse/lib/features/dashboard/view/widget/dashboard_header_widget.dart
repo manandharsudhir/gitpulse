@@ -34,7 +34,7 @@ class DashboardHeaderWidget extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(12)),
                               padding: EdgeInsets.all(50),
                               width: 797,
-                              height: 557,
+                              height: 470,
                               child: AddFormWidget()),
                         ));
               },

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gitpulse/core/configs/style/colors.dart';
 import 'package:gitpulse/core/configs/style/text_styles.dart';
 import 'package:gitpulse/core/widgets/facepile_widget.dart';
+import 'package:gitpulse/features/dashboard/view/widget/delete_form_widget.dart';
+import 'package:gitpulse/features/dashboard/view/widget/edit_form_widget.dart';
 
 class DashboardProjectWidget extends StatelessWidget {
   const DashboardProjectWidget({super.key});
@@ -33,16 +35,17 @@ class DashboardProjectWidget extends StatelessWidget {
                   style: AppTextStyle.bodyb2Bold,
                 )),
                 Expanded(child: Text("Users")),
+                // Expanded(
+                //     child: Text(
+                //   "Project Name",
+                //   style: AppTextStyle.bodyb2Bold,
+                // )),
                 Expanded(
+                    flex: 2,
                     child: Text(
-                  "Project Name",
-                  style: AppTextStyle.bodyb2Bold,
-                )),
-                Expanded(
-                    child: Text(
-                  "About",
-                  style: AppTextStyle.bodyb2Bold,
-                )),
+                      "About",
+                      style: AppTextStyle.bodyb2Bold,
+                    )),
               ],
             ),
           ),
@@ -73,7 +76,7 @@ class DashboardProjectLogItemWidget extends StatelessWidget {
         children: [
           Expanded(
               child: Text(
-            "Work Title",
+            "Project 1",
             style: AppTextStyle.bodyb2Bold,
           )),
           Expanded(
@@ -94,13 +97,45 @@ class DashboardProjectLogItemWidget extends StatelessWidget {
               space: 20,
             ),
           ),
-          Expanded(child: Text("Title")),
           Expanded(
+            flex: 2,
             child: Row(
               children: [
                 Expanded(child: Text("Design System update")),
-                // IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-                // IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    padding: EdgeInsets.all(40),
+                                    width: 597,
+                                    height: 270,
+                                    child: DeleteFormWidget()),
+                              ));
+                    },
+                    icon: Icon(Icons.delete)),
+                IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    padding: EdgeInsets.all(50),
+                                    width: 797,
+                                    height: 470,
+                                    child: EditFormWidget()),
+                              ));
+                    },
+                    icon: Icon(Icons.edit)),
               ],
             ),
           ),
