@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   addHourLog,
   getHourLogByUserIdAndProjectId,
-} = require("../controllers/user_projects");
+} = require("../controllers/hour_logs");
 
 router.post("/", addHourLog);
 router.get("/", getHourLogByUserIdAndProjectId);
