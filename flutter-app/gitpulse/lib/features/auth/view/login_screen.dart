@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Center(
         child: SizedBox(
-          width: 500,
+          width: 360,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -42,6 +42,7 @@ class LoginScreen extends StatelessWidget {
                 "Log in to your account",
                 style: AppTextStyle.headingh3,
               ),
+              Spacing.sizedBoxH_08(),
               Text(
                 "Welcome back! Please enter your details.",
                 style: AppTextStyle.bodyb1,
@@ -51,12 +52,12 @@ class LoginScreen extends StatelessWidget {
                 name: "email",
                 labelText: "Email",
               ),
-              Spacing.sizedBoxH_08(),
+              Spacing.sizedBoxH_10(),
               FormFieldWidget(
                 name: "password",
                 labelText: "Password",
               ),
-              Spacing.sizedBoxH_16(),
+              Spacing.sizedBoxH_24(),
               CustomButton(
                 text: "Sign in",
                 onPressed: () {
@@ -65,12 +66,16 @@ class LoginScreen extends StatelessWidget {
               ),
               Spacing.sizedBoxH_16(),
               CustomButton(
-                text: "Sign in",
+                text: "Sign in with Google",
                 buttonVariant: ButtonVariant.secondary,
               ),
               Spacing.sizedBoxH_16(),
               CustomButton(
-                text: "Sign in",
+                text: "Sign in with GitHub",
+                bgColor: Colors.black87,
+                prefixIcon: Assets.images.imgGithub.path,
+                prefixSize: 30,
+                sizeBetweenPrefixAndText: 12,
               ),
             ],
           ),
