@@ -2,7 +2,7 @@ const pool = require("../data/index");
 const { v4: uuidv4 } = require("uuid");
 
 const addHourLog = async (req, res) => {
-  const { user_id, project_id, hours_logged } = req.body;
+  const { user_id, project_id, hours_logged, description } = req.body;
 
   // Check if all required fields are provided
   if (!user_id || !project_id || !hours_logged) {
@@ -38,10 +38,10 @@ const addHourLog = async (req, res) => {
 
     // Insert the new hour log
     const newHourLog = await pool.query(
-      `INSERT INTO hour_logs (user_id, project_id, hours_logged) 
-       VALUES ($1, $2, $3) 
+      `INSERT INTO hour_logs (user_id, project_id, hours_logged, description) 
+       VALUES ($1, $2, $3, $4) 
        RETURNING *`,
-      [user_id, project_id, hours_logged]
+      [user_id, project_id, hours_logged, description]
     );
 
     // Respond with the newly created hour log
