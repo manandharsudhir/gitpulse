@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gitpulse/core/configs/spacing_size.dart';
 import 'package:gitpulse/core/configs/style/colors.dart';
 import 'package:gitpulse/core/configs/style/text_styles.dart';
 import 'package:gitpulse/core/constants/assets.gen.dart';
 import 'package:gitpulse/core/widgets/image_builder/assets_image_builder.dart';
-import 'package:gitpulse/core/widgets/image_builder/image_builder.dart';
-import 'package:gitpulse/core/widgets/image_builder/svg_image_builder.dart';
 import 'package:gitpulse/core/widgets/logo_container.dart';
 
 class DashboardSidebarWidget extends StatelessWidget {
@@ -22,6 +19,7 @@ class DashboardSidebarWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LogoContainer(),
+          Spacing.sizedBoxH_30(),
           SidebarItemWidget(
             title: "Dashboard",
             url: Assets.icons.layoutDashboard.path,

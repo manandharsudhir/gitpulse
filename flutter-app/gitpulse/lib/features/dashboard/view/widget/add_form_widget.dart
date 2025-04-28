@@ -15,7 +15,7 @@ class EditFormWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Edit Log",
+          "Add Log",
           style: AppTextStyle.headingh3,
         ),
         Spacing.sizedBoxH_40(),
@@ -46,7 +46,7 @@ class EditFormWidget extends StatelessWidget {
               borderRadius: 99,
             ),
           ],
-        ),
+        )
       ],
     );
   }

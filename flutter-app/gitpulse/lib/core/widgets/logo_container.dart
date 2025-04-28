@@ -10,7 +10,7 @@ class LogoContainer extends StatelessWidget {
     return Image.asset(
       "assets/logo/webpointLargePng.png",
       fit: BoxFit.fitWidth,
-      width: 120,
+      width: 175,
     );
   }
 }
