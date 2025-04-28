@@ -149,7 +149,7 @@ class DashboardTableWidget extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 13),
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -161,7 +161,7 @@ class DashboardTableWidget extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                  "Work Title",
+                  "Description",
                   style: AppTextStyle.bodyb2Bold,
                 )),
                 // Expanded(child: Text("Users")),
@@ -193,7 +193,7 @@ class DashboardProjectLogItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 13),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
