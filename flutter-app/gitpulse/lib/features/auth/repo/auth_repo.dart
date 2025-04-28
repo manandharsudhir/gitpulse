@@ -28,27 +28,27 @@ class AuthRepo {
     }
   }
 
-  Future<LoginResponseModel> socialAuth({
-    required String provider,
-    required String token,
-    Map<String, dynamic>? queryParameters,
-  }) async {
-    try {
-      final response = await BaseClient.instance.getIsolate(
-          ApiConstants.socialAuth(accessToken: token, provider: provider),
-          queryParameters: queryParameters);
+  // Future<LoginResponseModel> socialAuth({
+  //   required String provider,
+  //   required String token,
+  //   Map<String, dynamic>? queryParameters,
+  // }) async {
+  //   try {
+  //     final response = await BaseClient.instance.getIsolate(
+  //         ApiConstants.socialAuth(accessToken: token, provider: provider),
+  //         queryParameters: queryParameters);
 
-      return LoginResponseModel.fromJson(response["payload"]);
-    } on NetworkExceptions catch (e) {
-      throw e.errorMessage;
-    } catch (e) {
-      throw e.toString();
-    }
-  }
+  //     return LoginResponseModel.fromJson(response["payload"]);
+  //   } on NetworkExceptions catch (e) {
+  //     throw e.errorMessage;
+  //   } catch (e) {
+  //     throw e.toString();
+  //   }
+  // }
 
-  Future<void> logout() async {
-    // Logout logic
+  // Future<void> logout() async {
+  //   // Logout logic
 
-    SharedPreferencesImp.logout();
-  }
+  //   SharedPreferencesImp.logout();
+  // }
 }
