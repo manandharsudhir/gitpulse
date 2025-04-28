@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Palette {
   static const Color primaryAccent50 = Color(0xffEAF7FC);
   static const Color primaryAccent100 = Color(0xffBDE5F6);
-  static const Color primaryAccent600 = Color(0xff29ABE2);
+  static const Color primaryAccent600 = Color(0xff145AFF);
   static const Color primaryAccent700 = Color(0xff259ACB);
   static const Color primaryAccent800 = Color(0xff1F80AA);
   static const Color primaryAccent900 = Color(0xff0E3C4F);
@@ -53,7 +53,7 @@ class Palette {
   static const Color buttonPri = Color(0xffFFFFFF);
   static const Color button50 = Color(0xffEAF7FC);
   static const Color button100 = Color(0xffBDE5F6);
-  static const Color button600 = Color(0xff29ABE2);
+  static const Color button600 = Color(0xff145AFF);
   static const Color button700 = Color(0xff259ACB);
   static const Color button800 = Color(0xff1F80AA);
   static const Color button900 = Color(0xff0E3C4F);

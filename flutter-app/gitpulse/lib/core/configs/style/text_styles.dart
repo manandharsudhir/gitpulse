@@ -20,8 +20,8 @@ class AppTextStyle {
   );
 
   static const TextStyle headingh3 = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 29,
+    fontWeight: FontWeight.w600,
+    fontSize: 30,
     color: Palette.textHeading,
     fontFamily: AppStrings.figtree,
   );

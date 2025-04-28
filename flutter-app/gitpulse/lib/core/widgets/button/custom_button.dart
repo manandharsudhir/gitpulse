@@ -43,7 +43,7 @@ class CustomButton extends StatefulWidget {
     this.isLoading = false,
     this.prefixIcon,
     this.suffixIcon,
-    this.borderRadius = 24,
+    this.borderRadius = 8,
     this.prefixSize,
     super.key,
   });

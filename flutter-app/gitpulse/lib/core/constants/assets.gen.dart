@@ -551,14 +551,18 @@ class $AssetsImagesGen {
 class $AssetsLogoGen {
   const $AssetsLogoGen();
 
-  /// File path: assets/logo/webpoint-large.svg
-  String get webpointLarge => 'assets/logo/webpoint-large.svg';
-
   /// File path: assets/logo/webpoint.svg
   String get webpoint => 'assets/logo/webpoint.svg';
 
+  /// File path: assets/logo/webpointLarge.svg
+  String get webpointLarge => 'assets/logo/webpointLarge.svg';
+
+  /// File path: assets/logo/webpointLargePng.png
+  AssetGenImage get webpointLargePng =>
+      const AssetGenImage('assets/logo/webpointLargePng.png');
+
   /// List of all assets
-  List<String> get values => [webpointLarge, webpoint];
+  List<dynamic> get values => [webpoint, webpointLarge, webpointLargePng];
 }
 
 class $AssetsIconsPngGen {

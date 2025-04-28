@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gitpulse/features/auth/view/login_screen.dart';
+import 'package:gitpulse/features/dashboard/view/dashboard_screen.dart';
 import 'package:gitpulse/features/splashScreen/view/splash_screen.dart';
 import '../widgets/error_screens/error_screen.dart';
 import '../widgets/error_screens/nointernet_screen.dart';
@@ -24,6 +25,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: "/login",
           page: LoginRoute.page,
+        ),
+        AutoRoute(
+          path: "/dashboard",
+          page: DashboardRoute.page,
         ),
       ];
 }
