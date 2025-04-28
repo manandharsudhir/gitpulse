@@ -4,6 +4,7 @@ import 'package:gitpulse/core/configs/style/text_styles.dart';
 import 'package:gitpulse/core/constants/assets.gen.dart';
 import 'package:gitpulse/core/widgets/image_builder/assets_image_builder.dart';
 import 'package:gitpulse/core/widgets/image_builder/image_builder.dart';
+import 'package:gitpulse/features/dashboard/view/widget/add_form_widget.dart';
 import 'package:gitpulse/features/dashboard/view/widget/edit_form_widget.dart';
 
 class DashboardHeaderWidget extends StatelessWidget {
@@ -32,8 +33,8 @@ class DashboardHeaderWidget extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(12)),
                               padding: EdgeInsets.all(50),
                               width: 797,
-                              height: 557,
-                              child: EditFormWidget()),
+                              height: 470,
+                              child: AddFormWidget()),
                         ));
               },
               child: Container(

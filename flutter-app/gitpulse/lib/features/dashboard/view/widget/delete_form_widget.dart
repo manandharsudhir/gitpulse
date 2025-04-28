@@ -4,10 +4,9 @@ import 'package:gitpulse/core/configs/spacing_size.dart';
 import 'package:gitpulse/core/configs/style/text_styles.dart';
 import 'package:gitpulse/core/widgets/button/button_type.dart';
 import 'package:gitpulse/core/widgets/button/custom_button.dart';
-import 'package:gitpulse/core/widgets/form_widget/form_field_widget.dart';
 
-class AddFormWidget extends StatelessWidget {
-  const AddFormWidget({super.key});
+class DeleteFormWidget extends StatelessWidget {
+  const DeleteFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +14,15 @@ class AddFormWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Add Log",
+          "Are you sure?",
           style: AppTextStyle.headingh3,
         ),
-        Spacing.sizedBoxH_40(),
-        FormFieldWidget(
-          name: "description",
-          labelText: "Description",
-        ),
         Spacing.sizedBoxH_10(),
-        FormFieldWidget(
-          name: "hour",
-          labelText: "Hour",
+        Text(
+          "You'll lose your data.",
+          style: AppTextStyle.bodyb1,
         ),
+        Spacing.sizedBoxH_40(),
         Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -42,7 +37,7 @@ class AddFormWidget extends StatelessWidget {
             ),
             Spacing.sizedBoxW_16(),
             CustomButton(
-              text: "Save",
+              text: "Yes, Delete",
               borderRadius: 99,
             ),
           ],
