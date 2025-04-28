@@ -581,6 +581,10 @@ class $AssetsIconsPngGen {
   AssetGenImage get churchUnselected =>
       const AssetGenImage('assets/icons/png/church-unselected.png');
 
+  /// File path: assets/icons/png/ic_plus.png
+  AssetGenImage get icPlus =>
+      const AssetGenImage('assets/icons/png/ic_plus.png');
+
   /// File path: assets/icons/png/interest-pin.png
   AssetGenImage get interestPin =>
       const AssetGenImage('assets/icons/png/interest-pin.png');
@@ -593,6 +597,7 @@ class $AssetsIconsPngGen {
   List<AssetGenImage> get values => [
     churchPin,
     churchUnselected,
+    icPlus,
     interestPin,
     planCheckbox,
   ];

@@ -9,6 +9,7 @@ import 'package:gitpulse/core/widgets/button/custom_button.dart';
 import 'package:gitpulse/core/widgets/form_widget/form_field_widget.dart';
 import 'package:gitpulse/core/widgets/image_builder/image_builder.dart';
 import 'package:gitpulse/core/widgets/image_builder/svg_image_builder.dart';
+import 'package:gitpulse/features/dashboard/view/widget/dashboard_header_widget.dart';
 
 import '../../../core/widgets/logo_container.dart';
 
