@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:github/github.dart';
 import 'package:gitpulse/core/configs/spacing_size.dart';
 import 'package:gitpulse/core/configs/style/text_styles.dart';
 import 'package:gitpulse/core/constants/assets.gen.dart';
@@ -76,6 +80,36 @@ class LoginScreen extends StatelessWidget {
                 prefixIcon: Assets.images.imgGithub.path,
                 prefixSize: 30,
                 sizeBetweenPrefixAndText: 12,
+                onPressed: () async {
+                  try {
+                    // Create a new provider
+                    GithubAuthProvider githubProvider = GithubAuthProvider();
+
+                    // Optional: ask for extra GitHub permissions
+                    githubProvider.addScope('repo');
+                    githubProvider.setCustomParameters({
+                      'allow_signup': 'false',
+                    });
+
+                    // Sign in with popup
+                    await FirebaseAuth.instance.signInWithPopup(githubProvider);
+
+                    print(
+                        "Signed in as ${FirebaseAuth.instance.currentUser?.displayName}");
+                    print(
+                        await FirebaseAuth.instance.currentUser?.getIdToken());
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'account-exists-with-different-credential') {
+                      print('Account exists with different credentials.');
+                    } else if (e.code == 'invalid-credential') {
+                      print('Invalid credentials.');
+                    } else {
+                      print('Error: ${e.message}');
+                    }
+                  } catch (e) {
+                    print('General Error: $e');
+                  }
+                },
               ),
             ],
           ),

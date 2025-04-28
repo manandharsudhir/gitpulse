@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "411882295751",
+    "project_id": "gitpu-947eb",
+    "storage_bucket": "gitpu-947eb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411882295751:android:b3fe549a538ef9cf6509e2",
+        "android_client_info": {
+          "package_name": "com.example.gitpulse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt9jcHExCOlhNZy-H4T6dnHcdmbRoEWqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
