@@ -59,9 +59,12 @@ class SidebarItemWidget extends StatelessWidget {
             width: 24,
           ),
           Spacing.sizedBoxW_16(),
-          Text(
-            title,
-            style: AppTextStyle.bodyb1Bold,
+          Expanded(
+            child: Text(
+              title,
+              style: AppTextStyle.bodyb1Bold,
+              maxLines: 1,
+            ),
           ),
         ],
       ),

@@ -476,6 +476,10 @@ class $AssetsImagesGen {
   AssetGenImage get imageProfileBackgroundMale =>
       const AssetGenImage('assets/images/imageProfileBackgroundMale.png');
 
+  /// File path: assets/images/img-github.png
+  AssetGenImage get imgGithub =>
+      const AssetGenImage('assets/images/img-github.png');
+
   /// File path: assets/images/nearestChurchBackground.png
   AssetGenImage get nearestChurchBackground =>
       const AssetGenImage('assets/images/nearestChurchBackground.png');
@@ -538,6 +542,7 @@ class $AssetsImagesGen {
     imageProfileBackgroundFemale,
     imageProfileBackgroundGenderNeutral,
     imageProfileBackgroundMale,
+    imgGithub,
     nearestChurchBackground,
     noArchivedInterests,
     nointernet,
@@ -581,6 +586,10 @@ class $AssetsIconsPngGen {
   AssetGenImage get churchUnselected =>
       const AssetGenImage('assets/icons/png/church-unselected.png');
 
+  /// File path: assets/icons/png/ic_plus.png
+  AssetGenImage get icPlus =>
+      const AssetGenImage('assets/icons/png/ic_plus.png');
+
   /// File path: assets/icons/png/interest-pin.png
   AssetGenImage get interestPin =>
       const AssetGenImage('assets/icons/png/interest-pin.png');
@@ -593,6 +602,7 @@ class $AssetsIconsPngGen {
   List<AssetGenImage> get values => [
     churchPin,
     churchUnselected,
+    icPlus,
     interestPin,
     planCheckbox,
   ];

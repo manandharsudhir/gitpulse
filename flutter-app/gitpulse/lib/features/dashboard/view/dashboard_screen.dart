@@ -15,7 +15,10 @@ class DashboardScreen extends StatelessWidget {
           Expanded(flex: 1, child: DashboardSidebarWidget()),
           Expanded(
             flex: 5,
-            child: DashboardMainView(),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: DashboardMainView(),
+            ),
           ),
         ],
       ),
