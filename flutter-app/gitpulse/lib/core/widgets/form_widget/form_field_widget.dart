@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:gitpulse/core/configs/spacing_size.dart';
 import 'package:gitpulse/core/configs/style/colors.dart';
 import 'package:gitpulse/core/configs/style/text_styles.dart';
 import 'package:gitpulse/core/widgets/form_widget/custom_outline_border.dart';
@@ -113,132 +114,142 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderTextField(
-      name: widget.name,
-      autofocus: widget.autofocus,
-      enabled: widget.enable,
-      autocorrect: false,
-      initialValue: widget.initialValue,
-      focusNode: widget.node,
-      validator: widget.validator ?? FormBuilderValidators.required(),
-      autovalidateMode: widget.autovalidateMode,
-      inputFormatters: widget.inputFormatters,
-      keyboardType: widget.keyboardType,
-      maxLength: widget.maxLength,
-      maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
-      maxLines: widget.maxLines,
-      obscureText: _obsecureText,
-      onSubmitted: widget.onSubmitted,
-      controller: widget.controller,
-      textInputAction: widget.textInputAction,
-      onChanged: widget.onChanged,
-      onEditingComplete: widget.onEditingComplete,
-      onTap: widget.onTap,
-      readOnly: widget.readOnly,
-      style: widget.style ?? AppTextStyle.bodyb1Bold,
-      textAlignVertical: TextAlignVertical.center,
-      buildCounter: widget.maxLength != null
-          ? (context,
-                  {required currentLength,
-                  required isFocused,
-                  required maxLength}) =>
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "$currentLength of $maxLength character used",
-                  style: AppTextStyle.captionC1
-                      .copyWith(color: Palette.textPlaceholder),
-                ),
-              )
-          : null,
-      onTapOutside: widget.shouldCollapsOnTapOutside
-          ? (event) {
-              FocusScope.of(context).unfocus();
-            }
-          : null,
-      decoration: widget.decoration ??
-          InputDecoration(
-            contentPadding: widget.contentPadding,
-            hintText: widget.hintText,
-            hintStyle: widget.hintStyle ??
-                AppTextStyle.bodyb1.copyWith(color: Palette.textPlaceholder),
-            floatingLabelStyle:
-                AppTextStyle.bodyb1.copyWith(color: Palette.textPlaceholder),
-            labelText: widget.labelText,
-            labelStyle: widget.labelStyle ??
-                AppTextStyle.bodyb1.copyWith(
-                  color: Palette.textPlaceholder,
-                ),
-            alignLabelWithHint: widget.alignWithHint,
-            prefix: widget.prefix,
-            filled: widget.isFilled,
-            fillColor: widget.isFilled ? widget.fillColor : null,
-            prefixIcon: widget.prefixIcon,
-            prefixText: widget.prefixText,
-            errorStyle: widget.errorStyle,
-            enabledBorder: widget.showBorder
-                ? widget.enabledBorder ??
-                    const CustomOutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Palette.defaultStroke,
-                      ),
-                    )
-                : InputBorder.none,
-            border: widget.showBorder
-                ? const CustomOutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Palette.button700,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.labelText ?? "",
+          style: widget.labelStyle ??
+              AppTextStyle.bodyb1.copyWith(
+                color: Palette.textPlaceholder,
+              ),
+        ),
+        Spacing.sizedBoxH_08(),
+        FormBuilderTextField(
+          name: widget.name,
+          autofocus: widget.autofocus,
+          enabled: widget.enable,
+          autocorrect: false,
+          initialValue: widget.initialValue,
+          focusNode: widget.node,
+          validator: widget.validator ?? FormBuilderValidators.required(),
+          autovalidateMode: widget.autovalidateMode,
+          inputFormatters: widget.inputFormatters,
+          keyboardType: widget.keyboardType,
+          maxLength: widget.maxLength,
+          maxLengthEnforcement:
+              MaxLengthEnforcement.truncateAfterCompositionEnds,
+          maxLines: widget.maxLines,
+          obscureText: _obsecureText,
+          onSubmitted: widget.onSubmitted,
+          controller: widget.controller,
+          textInputAction: widget.textInputAction,
+          onChanged: widget.onChanged,
+          onEditingComplete: widget.onEditingComplete,
+          onTap: widget.onTap,
+          readOnly: widget.readOnly,
+          style: widget.style ?? AppTextStyle.bodyb1Bold,
+          textAlignVertical: TextAlignVertical.center,
+          buildCounter: widget.maxLength != null
+              ? (context,
+                      {required currentLength,
+                      required isFocused,
+                      required maxLength}) =>
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "$currentLength of $maxLength character used",
+                      style: AppTextStyle.captionC1
+                          .copyWith(color: Palette.textPlaceholder),
                     ),
                   )
-                : InputBorder.none,
-            focusedBorder: widget.showBorder
-                ? widget.focusedBorder ??
-                    const CustomOutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Palette.button700,
-                      ),
-                    )
-                : InputBorder.none,
-            errorBorder: widget.showBorder
-                ? widget.errorBorder ??
-                    const CustomOutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Palette.errorBase,
-                      ),
-                    )
-                : InputBorder.none,
-            focusedErrorBorder: widget.showBorder
-                ? widget.focusedErrorBorder ??
-                    const CustomOutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Palette.errorBase,
-                      ),
-                    )
-                : InputBorder.none,
-            disabledBorder: widget.showBorder
-                ? widget.disabledBorder ??
-                    const CustomOutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Palette.defaultStroke,
-                      ),
-                    )
-                : InputBorder.none,
-            suffixIcon: widget.obscureField == false
-                ? widget.suffixIcon
-                : IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _obsecureText = !_obsecureText;
-                      });
-                    },
-                    icon: Icon(
-                      _obsecureText == false
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
-                      color: Theme.of(context).colorScheme.onSurface,
-                      size: 18,
-                    )),
-          ),
+              : null,
+          onTapOutside: widget.shouldCollapsOnTapOutside
+              ? (event) {
+                  FocusScope.of(context).unfocus();
+                }
+              : null,
+          decoration: widget.decoration ??
+              InputDecoration(
+                contentPadding: widget.contentPadding,
+                hintText: widget.hintText,
+                hintStyle: widget.hintStyle ??
+                    AppTextStyle.bodyb1
+                        .copyWith(color: Palette.textPlaceholder),
+                floatingLabelStyle: AppTextStyle.bodyb1
+                    .copyWith(color: Palette.textPlaceholder),
+                alignLabelWithHint: widget.alignWithHint,
+                prefix: widget.prefix,
+                filled: widget.isFilled,
+                fillColor: widget.isFilled ? widget.fillColor : null,
+                prefixIcon: widget.prefixIcon,
+                prefixText: widget.prefixText,
+                errorStyle: widget.errorStyle,
+                enabledBorder: widget.showBorder
+                    ? widget.enabledBorder ??
+                        const CustomOutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Palette.defaultStroke,
+                          ),
+                        )
+                    : InputBorder.none,
+                border: widget.showBorder
+                    ? const CustomOutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Palette.button700,
+                        ),
+                      )
+                    : InputBorder.none,
+                focusedBorder: widget.showBorder
+                    ? widget.focusedBorder ??
+                        const CustomOutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Palette.button700,
+                          ),
+                        )
+                    : InputBorder.none,
+                errorBorder: widget.showBorder
+                    ? widget.errorBorder ??
+                        const CustomOutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Palette.errorBase,
+                          ),
+                        )
+                    : InputBorder.none,
+                focusedErrorBorder: widget.showBorder
+                    ? widget.focusedErrorBorder ??
+                        const CustomOutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Palette.errorBase,
+                          ),
+                        )
+                    : InputBorder.none,
+                disabledBorder: widget.showBorder
+                    ? widget.disabledBorder ??
+                        const CustomOutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Palette.defaultStroke,
+                          ),
+                        )
+                    : InputBorder.none,
+                suffixIcon: widget.obscureField == false
+                    ? widget.suffixIcon
+                    : IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _obsecureText = !_obsecureText;
+                          });
+                        },
+                        icon: Icon(
+                          _obsecureText == false
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: Theme.of(context).colorScheme.onSurface,
+                          size: 18,
+                        )),
+              ),
+        ),
+      ],
     );
   }
 }

@@ -42,7 +42,7 @@ class Palette {
   static const Color lineLight = Color(0xffD3D7D9);
   static const Color lineBase = Color(0xff272727);
   static const Color lineDark = Color(0xffDFE3E5);
-  static const Color defaultStroke = Color(0xffD9E2E8);
+  static const Color defaultStroke = Color(0xffE9EAEB);
   static const Color lineStrokeFocus = Color(0xff272727);
 
   static const Color iconDefault = Color(0xff3E3D4B);
@@ -70,12 +70,4 @@ class Palette {
   static const Color bgLightGrey = Color(0xffF7F8FA);
 
   static const Color greenishBlue = Color(0xff22B573);
-
-  static const Color friendshipAccent = Color(0xff6A7DAC);
-  static const Color spiritualAccent = Color(0xffA3795A);
-  static const Color studyAccent = Color(0xff4E986C);
-  static const Color baptismalAccent = Color(0xffFDCE76);
-  static const Color mentorInTrainingAccent = Color(0xffE17984);
-
-  static Color shadowColor = Colors.black.withOpacity(0.08);
 }

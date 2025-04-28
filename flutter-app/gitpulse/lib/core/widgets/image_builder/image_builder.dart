@@ -43,7 +43,9 @@ class ImageBuilder extends StatelessWidget {
     return Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-            shape: shape, borderRadius: borderRadius, color: Colors.black12),
+          shape: shape,
+          borderRadius: borderRadius,
+        ),
         height: height,
         width: width,
         child:

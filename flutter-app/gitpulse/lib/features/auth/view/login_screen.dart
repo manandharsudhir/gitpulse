@@ -47,9 +47,15 @@ class LoginScreen extends StatelessWidget {
                 style: AppTextStyle.bodyb1,
               ),
               Spacing.sizedBoxH_32(),
-              FormFieldWidget(name: "email"),
+              FormFieldWidget(
+                name: "email",
+                labelText: "Email",
+              ),
               Spacing.sizedBoxH_08(),
-              FormFieldWidget(name: "password"),
+              FormFieldWidget(
+                name: "password",
+                labelText: "Password",
+              ),
               Spacing.sizedBoxH_16(),
               CustomButton(
                 text: "Sign in",

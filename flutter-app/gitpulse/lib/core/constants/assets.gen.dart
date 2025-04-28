@@ -112,9 +112,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/dangerBig.svg
   String get dangerBig => 'assets/icons/dangerBig.svg';
 
-  /// File path: assets/icons/dashboard.svg
-  String get dashboard => 'assets/icons/dashboard.svg';
-
   /// File path: assets/icons/decision.svg
   String get decision => 'assets/icons/decision.svg';
 
@@ -172,6 +169,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/interests.svg
   String get interests => 'assets/icons/interests.svg';
 
+  /// File path: assets/icons/layout-dashboard.png
+  AssetGenImage get layoutDashboard =>
+      const AssetGenImage('assets/icons/layout-dashboard.png');
+
   /// File path: assets/icons/location.svg
   String get location => 'assets/icons/location.svg';
 
@@ -180,6 +181,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/logout.svg
   String get logout => 'assets/icons/logout.svg';
+
+  /// File path: assets/icons/logs.png
+  AssetGenImage get logs => const AssetGenImage('assets/icons/logs.png');
 
   /// File path: assets/icons/mail.svg
   String get mail => 'assets/icons/mail.svg';
@@ -305,7 +309,7 @@ class $AssetsIconsGen {
   String get viewTeamMember => 'assets/icons/viewTeamMember.svg';
 
   /// List of all assets
-  List<String> get values => [
+  List<dynamic> get values => [
     add,
     addInterest,
     addNotes,
@@ -335,7 +339,6 @@ class $AssetsIconsGen {
     closeButton,
     danger,
     dangerBig,
-    dashboard,
     decision,
     deleteBig,
     delete,
@@ -355,9 +358,11 @@ class $AssetsIconsGen {
     infoCircle,
     interest,
     interests,
+    layoutDashboard,
     location,
     lock,
     logout,
+    logs,
     mail,
     map,
     markAllAsRead,
