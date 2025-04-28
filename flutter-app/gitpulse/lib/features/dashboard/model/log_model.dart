@@ -16,12 +16,11 @@ String logModelToJson(LogModel data) => json.encode(data.toJson());
 class LogModel with _$LogModel {
   const factory LogModel({
     @JsonKey(name: "id") String? id,
-    @JsonKey(name: "user_id") String? userId,
+    @JsonKey(name: "user_id") dynamic userId,
     @JsonKey(name: "project_id") String? projectId,
     @JsonKey(name: "hours_logged") int? hoursLogged,
     @JsonKey(name: "date_created") DateTime? dateCreated,
     @JsonKey(name: "description") String? description,
-    @JsonKey(name: "project_name") String? projectName,
   }) = _LogModel;
 
   factory LogModel.fromJson(Map<String, dynamic> json) =>

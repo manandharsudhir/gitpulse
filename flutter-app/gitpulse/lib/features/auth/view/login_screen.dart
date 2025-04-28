@@ -15,7 +15,7 @@ import 'package:gitpulse/core/widgets/image_builder/image_builder.dart';
 import 'package:gitpulse/core/widgets/image_builder/svg_image_builder.dart';
 import 'package:gitpulse/core/widgets/loading_widget/progress_indicator_widget.dart';
 import 'package:gitpulse/core/widgets/toast/toast.dart';
-import 'package:gitpulse/features/auth/provider/auth_provider.dart';
+import 'package:gitpulse/features/auth/provider/login_provider.dart';
 
 import '../../../core/widgets/logo_container.dart';
 
@@ -101,9 +101,9 @@ class LoginScreen extends HookConsumerWidget {
                   CustomButton(
                     text: "Sign in",
                     onPressed: () {
-                      ref.read(loginProvider.notifier).loginUser(
-                          email: emailCon.text.trim(),
-                          password: passwordCon.text.trim());
+                      // ref.read(loginProvider.notifier).loginUser(
+                      //     email: emailCon.text.trim(),
+                      //     password: passwordCon.text.trim());
                     },
                   ),
                   Spacing.sizedBoxH_16(),

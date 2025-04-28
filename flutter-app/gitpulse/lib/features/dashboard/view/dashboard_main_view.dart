@@ -117,13 +117,7 @@ class DashboardMainView extends StatelessWidget {
         ),
         Spacing.sizedBoxH_24(),
         Expanded(
-          child: Column(
-            children: [
-              Text("hello"),
-              // DashboardProjectWidget(),
-              DashboardTableWidget(),
-            ],
-          ),
+          child: DashboardTableWidget(),
         ),
       ],
     );

@@ -14,21 +14,22 @@ class LoginProvider extends StateNotifier<ResponseStatus> {
   LoginProvider(this.ref) : super(const ResponseStatus.initial());
   final Ref ref;
 
-  Future<void> loginUser(
-      {required String email, required String password}) async {
-    try {
-      state = const ResponseStatus.progress();
-      final response = await AuthRepo.instance.login(email, password);
-      SharedPreferencesImp.write(StorageConstant.token, response.token);
-      SharedPreferencesImp.write(StorageConstant.userId, response.user?.id);
+  // Future<void> loginUser(
+  //     {required String email, required String password}) async {
+  //   try {
+  //     state = const ResponseStatus.progress();
+  //     final response = await AuthRepo.instance.login(email, password);
+  //     SharedPreferencesImp.write(StorageConstant.token, response.token);
 
-      state = ResponseStatus.success(data: response);
-    } catch (e) {
-      state = ResponseStatus.error(e.toString());
-    }
-  }
+  //     state = ResponseStatus.success(data: response);
+  //   } catch (e) {
+  //     state = ResponseStatus.error(e.toString());
+  //   }
+  // }
 
   Future<void> loginUsingGithub() async {
+    state = ResponseStatus.progress();
+
     try {
       // Create a new provider
       GithubAuthProvider githubProvider = GithubAuthProvider();
@@ -40,9 +41,9 @@ class LoginProvider extends StateNotifier<ResponseStatus> {
       });
 
       // Sign in with popup
-      await FirebaseAuth.instance.signInWithPopup(githubProvider);
+      final data = await FirebaseAuth.instance.signInWithPopup(githubProvider);
 
-      state = ResponseStatus.success();
+      state = ResponseStatus.success(data: data);
     } on FirebaseAuthException catch (e) {
       state = ResponseStatus.error(e.message ?? "");
     } catch (e) {

@@ -16,14 +16,11 @@ class LogsProvider extends StateNotifier<ResponseStatus<List<LogModel>>> {
 
   Future<void> getLogs() async {
     try {
-      state = const ResponseStatus.progress();
-      logs = [
-        LogModel(
-          id: Uuid().v4(),
-          projectName: "Egw Writings",
-          description: "Sermon note fetch",
-        )
-      ];
+      if ((state is! ResponseStatusSuccess)) {
+        state = const ResponseStatus.progress();
+      }
+      final response = await DashboardRepo.instance.getLogs();
+      logs = response;
       state = ResponseStatus.success(data: logs);
     } catch (e) {
       state = ResponseStatus.error(e.toString());
@@ -39,7 +36,6 @@ class LogsProvider extends StateNotifier<ResponseStatus<List<LogModel>>> {
       state = const ResponseStatus.progress();
       logs.add(LogModel(
         id: Uuid().v4(),
-        projectName: projectName,
         description: subtitle,
         hoursLogged: hour,
       ));
@@ -72,7 +68,6 @@ class LogsProvider extends StateNotifier<ResponseStatus<List<LogModel>>> {
       logs.map((e) {
         if (e.id == uuid) {
           return e.copyWith(
-            projectName: projectName,
             description: subtitle,
             hoursLogged: hour,
           );

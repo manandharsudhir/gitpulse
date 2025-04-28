@@ -12,21 +12,21 @@ class AuthRepo {
 
   static AuthRepo get instance => AuthRepo._();
 
-  Future<LoginResponseModel> login(String email, String password) async {
-    try {
-      final response =
-          await BaseClient.instance.postIsolate(ApiConstants.login, data: {
-        "email": email,
-        "password": password,
-      });
+  // Future<LoginResponseModel> login(String email, String password) async {
+  //   try {
+  //     final response =
+  //         await BaseClient.instance.postIsolate(ApiConstants.login, data: {
+  //       "email": email,
+  //       "password": password,
+  //     });
 
-      return LoginResponseModel.fromJson(response);
-    } on NetworkExceptions catch (e) {
-      throw e.errorMessage;
-    } catch (e) {
-      throw e.toString();
-    }
-  }
+  //     return LoginResponseModel.fromJson(response);
+  //   } on NetworkExceptions catch (e) {
+  //     throw e.errorMessage;
+  //   } catch (e) {
+  //     throw e.toString();
+  //   }
+  // }
 
   // Future<LoginResponseModel> socialAuth({
   //   required String provider,

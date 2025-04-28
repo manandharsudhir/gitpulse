@@ -23,7 +23,7 @@ mixin _$LogModel {
   @JsonKey(name: "id")
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "user_id")
-  String? get userId => throw _privateConstructorUsedError;
+  dynamic get userId => throw _privateConstructorUsedError;
   @JsonKey(name: "project_id")
   String? get projectId => throw _privateConstructorUsedError;
   @JsonKey(name: "hours_logged")
@@ -32,8 +32,6 @@ mixin _$LogModel {
   DateTime? get dateCreated => throw _privateConstructorUsedError;
   @JsonKey(name: "description")
   String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: "project_name")
-  String? get projectName => throw _privateConstructorUsedError;
 
   /// Serializes this LogModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,12 +50,11 @@ abstract class $LogModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") String? id,
-      @JsonKey(name: "user_id") String? userId,
+      @JsonKey(name: "user_id") dynamic userId,
       @JsonKey(name: "project_id") String? projectId,
       @JsonKey(name: "hours_logged") int? hoursLogged,
       @JsonKey(name: "date_created") DateTime? dateCreated,
-      @JsonKey(name: "description") String? description,
-      @JsonKey(name: "project_name") String? projectName});
+      @JsonKey(name: "description") String? description});
 }
 
 /// @nodoc
@@ -81,7 +78,6 @@ class _$LogModelCopyWithImpl<$Res, $Val extends LogModel>
     Object? hoursLogged = freezed,
     Object? dateCreated = freezed,
     Object? description = freezed,
-    Object? projectName = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -91,7 +87,7 @@ class _$LogModelCopyWithImpl<$Res, $Val extends LogModel>
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
@@ -108,10 +104,6 @@ class _$LogModelCopyWithImpl<$Res, $Val extends LogModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectName: freezed == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -126,12 +118,11 @@ abstract class _$$LogModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "id") String? id,
-      @JsonKey(name: "user_id") String? userId,
+      @JsonKey(name: "user_id") dynamic userId,
       @JsonKey(name: "project_id") String? projectId,
       @JsonKey(name: "hours_logged") int? hoursLogged,
       @JsonKey(name: "date_created") DateTime? dateCreated,
-      @JsonKey(name: "description") String? description,
-      @JsonKey(name: "project_name") String? projectName});
+      @JsonKey(name: "description") String? description});
 }
 
 /// @nodoc
@@ -153,7 +144,6 @@ class __$$LogModelImplCopyWithImpl<$Res>
     Object? hoursLogged = freezed,
     Object? dateCreated = freezed,
     Object? description = freezed,
-    Object? projectName = freezed,
   }) {
     return _then(_$LogModelImpl(
       id: freezed == id
@@ -163,7 +153,7 @@ class __$$LogModelImplCopyWithImpl<$Res>
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
@@ -180,10 +170,6 @@ class __$$LogModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectName: freezed == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -197,8 +183,7 @@ class _$LogModelImpl implements _LogModel {
       @JsonKey(name: "project_id") this.projectId,
       @JsonKey(name: "hours_logged") this.hoursLogged,
       @JsonKey(name: "date_created") this.dateCreated,
-      @JsonKey(name: "description") this.description,
-      @JsonKey(name: "project_name") this.projectName});
+      @JsonKey(name: "description") this.description});
 
   factory _$LogModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LogModelImplFromJson(json);
@@ -208,7 +193,7 @@ class _$LogModelImpl implements _LogModel {
   final String? id;
   @override
   @JsonKey(name: "user_id")
-  final String? userId;
+  final dynamic userId;
   @override
   @JsonKey(name: "project_id")
   final String? projectId;
@@ -221,13 +206,10 @@ class _$LogModelImpl implements _LogModel {
   @override
   @JsonKey(name: "description")
   final String? description;
-  @override
-  @JsonKey(name: "project_name")
-  final String? projectName;
 
   @override
   String toString() {
-    return 'LogModel(id: $id, userId: $userId, projectId: $projectId, hoursLogged: $hoursLogged, dateCreated: $dateCreated, description: $description, projectName: $projectName)';
+    return 'LogModel(id: $id, userId: $userId, projectId: $projectId, hoursLogged: $hoursLogged, dateCreated: $dateCreated, description: $description)';
   }
 
   @override
@@ -236,7 +218,7 @@ class _$LogModelImpl implements _LogModel {
         (other.runtimeType == runtimeType &&
             other is _$LogModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
             (identical(other.projectId, projectId) ||
                 other.projectId == projectId) &&
             (identical(other.hoursLogged, hoursLogged) ||
@@ -244,15 +226,19 @@ class _$LogModelImpl implements _LogModel {
             (identical(other.dateCreated, dateCreated) ||
                 other.dateCreated == dateCreated) &&
             (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.projectName, projectName) ||
-                other.projectName == projectName));
+                other.description == description));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, projectId,
-      hoursLogged, dateCreated, description, projectName);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(userId),
+      projectId,
+      hoursLogged,
+      dateCreated,
+      description);
 
   /// Create a copy of LogModel
   /// with the given fields replaced by the non-null parameter values.
@@ -273,12 +259,11 @@ class _$LogModelImpl implements _LogModel {
 abstract class _LogModel implements LogModel {
   const factory _LogModel(
           {@JsonKey(name: "id") final String? id,
-          @JsonKey(name: "user_id") final String? userId,
+          @JsonKey(name: "user_id") final dynamic userId,
           @JsonKey(name: "project_id") final String? projectId,
           @JsonKey(name: "hours_logged") final int? hoursLogged,
           @JsonKey(name: "date_created") final DateTime? dateCreated,
-          @JsonKey(name: "description") final String? description,
-          @JsonKey(name: "project_name") final String? projectName}) =
+          @JsonKey(name: "description") final String? description}) =
       _$LogModelImpl;
 
   factory _LogModel.fromJson(Map<String, dynamic> json) =
@@ -289,7 +274,7 @@ abstract class _LogModel implements LogModel {
   String? get id;
   @override
   @JsonKey(name: "user_id")
-  String? get userId;
+  dynamic get userId;
   @override
   @JsonKey(name: "project_id")
   String? get projectId;
@@ -302,9 +287,6 @@ abstract class _LogModel implements LogModel {
   @override
   @JsonKey(name: "description")
   String? get description;
-  @override
-  @JsonKey(name: "project_name")
-  String? get projectName;
 
   /// Create a copy of LogModel
   /// with the given fields replaced by the non-null parameter values.

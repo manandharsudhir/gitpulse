@@ -156,7 +156,9 @@ class _DashboardTableWidgetState extends ConsumerState<DashboardTableWidget> {
   @override
   void initState() {
     super.initState();
-    startApiPolling();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      startApiPolling();
+    });
   }
 
   void startApiPolling() {
@@ -221,23 +223,31 @@ class _DashboardTableWidgetState extends ConsumerState<DashboardTableWidget> {
               ],
             ),
           ),
-          logs.when(initial: () {
-            return ShimmerHelper().buildListShimmer();
-          }, progress: () {
-            return ShimmerHelper().buildListShimmer();
-          }, error: (e) {
-            return ErrorScreen(
-              function: () {},
-            );
-          }, success: (data) {
-            return ListView.builder(
-              itemBuilder: (context, index) =>
-                  DashboardProjectLogItemWidget(log: data![index]),
-              itemCount: data?.length,
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-            );
-          })
+          Expanded(
+            child: logs.when(initial: () {
+              return ShimmerHelper().buildListShimmer(
+                isScrollable: true,
+              );
+            }, progress: () {
+              return ShimmerHelper().buildListShimmer(
+                isScrollable: true,
+              );
+            }, error: (e) {
+              return ErrorScreen(
+                function: () {
+                  ref.read(logsProvider.notifier).getLogs();
+                },
+              );
+            }, success: (data) {
+              return ListView.builder(
+                itemBuilder: (context, index) =>
+                    DashboardProjectLogItemWidget(log: data![index]),
+                itemCount: data?.length,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+              );
+            }),
+          )
         ],
       ),
     );
@@ -269,7 +279,7 @@ class DashboardProjectLogItemWidget extends HookConsumerWidget {
             log.description ?? "",
             style: AppTextStyle.bodyb2Bold,
           )),
-          Expanded(child: Text(log.projectName ?? "")),
+          Expanded(child: Text("Test-repo")),
           // Expanded(
           //   child: FacePile(
           //     images: [
