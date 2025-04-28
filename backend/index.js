@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const usersRouter = require("./routes/users");
+const projectsRouter = require("./routes/projects");
+const userProjectsRouter = require("./routes/user_projects");
 const passport = require("passport");
 const session = require("express-session");
 require("./config/passport");
@@ -31,6 +33,12 @@ app.get("/", (req, res) => {
 });
 //users
 app.use("/api/v1/auth", usersRouter);
+
+//projects
+app.use("/api/v1/projects", projectsRouter);
+
+//logs
+app.use("/api/v1/user-projects", userProjectsRouter);
 
 app.listen(4000, () => {
   console.log(`Server listening at port 4000`);
