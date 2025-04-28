@@ -119,8 +119,9 @@ class DashboardMainView extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              DashboardProjectWidget(),
-              // DashboardTableWidget(),
+              Text("hello"),
+              // DashboardProjectWidget(),
+              DashboardTableWidget(),
             ],
           ),
         ),

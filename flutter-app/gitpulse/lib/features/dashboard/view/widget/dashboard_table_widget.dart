@@ -130,16 +130,59 @@
 //   }
 // }
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gitpulse/core/configs/style/colors.dart';
 import 'package:gitpulse/core/configs/style/text_styles.dart';
-import 'package:gitpulse/core/widgets/facepile_widget.dart';
+import 'package:gitpulse/core/widgets/error_screens/error_screen.dart';
+import 'package:gitpulse/core/widgets/loading_widget/shimmer_helper.dart';
+import 'package:gitpulse/features/dashboard/model/log_model.dart';
+import 'package:gitpulse/features/dashboard/provider/logs_provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DashboardTableWidget extends StatelessWidget {
+class DashboardTableWidget extends StatefulHookConsumerWidget {
   const DashboardTableWidget({super.key});
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _DashboardTableWidgetState();
+}
+
+class _DashboardTableWidgetState extends ConsumerState<DashboardTableWidget> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    startApiPolling();
+  }
+
+  void startApiPolling() {
+    // Immediately call once
+    hitApi();
+
+    // Then repeat every 5 seconds
+    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      hitApi();
+    });
+  }
+
+  Future<void> hitApi() async {
+    ref.read(logsProvider.notifier).getLogs();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // VERY IMPORTANT: Cancel timer when view is closed
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final logs = ref.watch(logsProvider);
+
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -178,20 +221,38 @@ class DashboardTableWidget extends StatelessWidget {
               ],
             ),
           ),
-          ...List.generate(5, (index) => DashboardProjectLogItemWidget()),
+          logs.when(initial: () {
+            return ShimmerHelper().buildListShimmer();
+          }, progress: () {
+            return ShimmerHelper().buildListShimmer();
+          }, error: (e) {
+            return ErrorScreen(
+              function: () {},
+            );
+          }, success: (data) {
+            return ListView.builder(
+              itemBuilder: (context, index) =>
+                  DashboardProjectLogItemWidget(log: data![index]),
+              itemCount: data?.length,
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+            );
+          })
         ],
       ),
     );
   }
 }
 
-class DashboardProjectLogItemWidget extends StatelessWidget {
+class DashboardProjectLogItemWidget extends HookConsumerWidget {
   const DashboardProjectLogItemWidget({
     super.key,
+    required this.log,
   });
+  final LogModel log;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 13),
       decoration: BoxDecoration(
@@ -205,10 +266,10 @@ class DashboardProjectLogItemWidget extends StatelessWidget {
         children: [
           Expanded(
               child: Text(
-            "Work Title",
+            log.description ?? "",
             style: AppTextStyle.bodyb2Bold,
           )),
-          Expanded(child: Text("Title")),
+          Expanded(child: Text(log.projectName ?? "")),
           // Expanded(
           //   child: FacePile(
           //     images: [
@@ -226,8 +287,14 @@ class DashboardProjectLogItemWidget extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: Text("Design System update")),
-                IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                Expanded(child: Text("${log.hoursLogged} hours")),
+                IconButton(
+                    onPressed: () {
+                      ref
+                          .read(logsProvider.notifier)
+                          .deleteLog(uuid: log.id ?? "");
+                    },
+                    icon: Icon(Icons.delete)),
                 IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
               ],
             ),

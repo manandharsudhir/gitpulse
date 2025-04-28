@@ -19,64 +19,63 @@ class BaseClient {
   static BaseClient get instance => _instance;
 
   void _setupAuthHeaderInterceptor() {
-    //get token
-    // _dio.interceptors.addAll([
-    //   // ChuckerDioInterceptor(),
-    //   QueuedInterceptorsWrapper(
-    //     onRequest: (RequestOptions options, RequestInterceptorHandler r) async {
-    //       final isAuthenticated = AuthService.instance.isLoggedIn();
-    //       options.headers['Accept'] = "*/*";
-    //       options.headers["x-client-platform"] = "mobile";
-    //       if (isAuthenticated) {
-    //         final token = SharedPreferencesImp.read(StorageConstant.token);
-    //         options.headers["Authorization"] = "Bearer $token";
-    //       }
-    //       r.next(options);
-    //     },
-    //     onError: (e, handler) async {
-    //       if ((e.response?.statusCode == 401)) {
-    //         // appRouter.replaceAll([LoginRoute()]);
-    //         final authService = AuthService.instance;
-    //         if (authService.isLoggedIn()) {
-    //           try {
-    //             await authService.refreshBearerToken();
-    //             return handler.resolve(await _retry(e.requestOptions));
-    //           } catch (_) {
-    //             showErrorToast("Session Expired");
-    //             NotificationRepository.instance.deleteToken();
-    //             AuthRepo.instance.logout();
-    //             SharedPreferencesImp.deleteAll();
-    //             appRouter.replace(LoginRoute());
-    //             handler.next(e);
-    //           }
-    //         } else {
-    //           showErrorToast("Session Expired");
-    //           NotificationRepository.instance.deleteToken();
-    //           AuthRepo.instance.logout();
-    //           SharedPreferencesImp.deleteAll();
-    //           appRouter.replace(LoginRoute());
-    //           handler.next(e);
-    //         }
-    //       } else {
-    //         handler.next(e);
-    //       }
-    //       // appRouter.replaceAll([LoginRoute()]);
-    //     },
-    //   ),
-    //   if (kDebugMode)
-    //     PrettyDioLogger(
-    //       requestBody: true,
-    //       requestHeader: true,
-    //     )
-    // ]);
-    // if (kDebugMode) {
-    //   _tokenDio.interceptors.addAll([
-    //     PrettyDioLogger(
-    //       requestBody: true,
-    //       requestHeader: true,
-    //     )
-    //   ]);
-    // }
+    _dio.interceptors.addAll([
+      // ChuckerDioInterceptor(),
+      // QueuedInterceptorsWrapper(
+      //   onRequest: (RequestOptions options, RequestInterceptorHandler r) async {
+      //     final isAuthenticated = AuthService.instance.isLoggedIn();
+      //     options.headers['Accept'] = "*/*";
+      //     options.headers["x-client-platform"] = "mobile";
+      //     if (isAuthenticated) {
+      //       final token = SharedPreferencesImp.read(StorageConstant.token);
+      //       options.headers["Authorization"] = "Bearer $token";
+      //     }
+      //     r.next(options);
+      //   },
+      //   onError: (e, handler) async {
+      //     if ((e.response?.statusCode == 401)) {
+      //       // appRouter.replaceAll([LoginRoute()]);
+      //       final authService = AuthService.instance;
+      //       if (authService.isLoggedIn()) {
+      //         try {
+      //           await authService.refreshBearerToken();
+      //           return handler.resolve(await _retry(e.requestOptions));
+      //         } catch (_) {
+      //           showErrorToast("Session Expired");
+      //           NotificationRepository.instance.deleteToken();
+      //           AuthRepo.instance.logout();
+      //           SharedPreferencesImp.deleteAll();
+      //           appRouter.replace(LoginRoute());
+      //           handler.next(e);
+      //         }
+      //       } else {
+      //         showErrorToast("Session Expired");
+      //         NotificationRepository.instance.deleteToken();
+      //         AuthRepo.instance.logout();
+      //         SharedPreferencesImp.deleteAll();
+      //         appRouter.replace(LoginRoute());
+      //         handler.next(e);
+      //       }
+      //     } else {
+      //       handler.next(e);
+      //     }
+      //     // appRouter.replaceAll([LoginRoute()]);
+      //   },
+      // ),
+      if (kDebugMode)
+        PrettyDioLogger(
+          requestBody: true,
+          requestHeader: true,
+        )
+    ]);
+    if (kDebugMode) {
+      _tokenDio.interceptors.addAll([
+        PrettyDioLogger(
+          requestBody: true,
+          requestHeader: true,
+        )
+      ]);
+    }
   }
 
   final Dio _dio = Dio(BaseOptions(

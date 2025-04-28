@@ -7,4 +7,5 @@ class ApiConstants {
   static const String githubLogin = '$version1/github';
   static const String signup = '$version1/auth/signup';
   static const String login = '$version1/auth/login';
+  static const String getUserLogs = '$version1/logs';
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gitpulse/core/constants/storage_constant.dart';
 import 'package:gitpulse/core/models/response/response_status.dart';
@@ -19,8 +20,31 @@ class LoginProvider extends StateNotifier<ResponseStatus> {
       state = const ResponseStatus.progress();
       final response = await AuthRepo.instance.login(email, password);
       SharedPreferencesImp.write(StorageConstant.token, response.token);
+      SharedPreferencesImp.write(StorageConstant.userId, response.user?.id);
 
       state = ResponseStatus.success(data: response);
+    } catch (e) {
+      state = ResponseStatus.error(e.toString());
+    }
+  }
+
+  Future<void> loginUsingGithub() async {
+    try {
+      // Create a new provider
+      GithubAuthProvider githubProvider = GithubAuthProvider();
+
+      // Optional: ask for extra GitHub permissions
+      githubProvider.addScope('repo');
+      githubProvider.setCustomParameters({
+        'allow_signup': 'false',
+      });
+
+      // Sign in with popup
+      await FirebaseAuth.instance.signInWithPopup(githubProvider);
+
+      state = ResponseStatus.success();
+    } on FirebaseAuthException catch (e) {
+      state = ResponseStatus.error(e.message ?? "");
     } catch (e) {
       state = ResponseStatus.error(e.toString());
     }

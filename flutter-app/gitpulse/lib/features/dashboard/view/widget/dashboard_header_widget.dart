@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gitpulse/core/configs/style/colors.dart';
 import 'package:gitpulse/core/configs/style/text_styles.dart';
 import 'package:gitpulse/core/constants/assets.gen.dart';
 import 'package:gitpulse/core/widgets/image_builder/assets_image_builder.dart';
 import 'package:gitpulse/core/widgets/image_builder/image_builder.dart';
+import 'package:gitpulse/features/dashboard/view/widget/add_form_widget.dart';
 import 'package:gitpulse/features/dashboard/view/widget/edit_form_widget.dart';
 
 class DashboardHeaderWidget extends StatelessWidget {
@@ -33,7 +35,7 @@ class DashboardHeaderWidget extends StatelessWidget {
                               padding: EdgeInsets.all(50),
                               width: 797,
                               height: 557,
-                              child: EditFormWidget()),
+                              child: AddFormWidget()),
                         ));
               },
               child: Container(
@@ -59,12 +61,10 @@ class DashboardHeaderWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                  color: Colors.amber, borderRadius: BorderRadius.circular(99)),
-            )
+            ImageBuilder(
+              url: FirebaseAuth.instance.currentUser?.photoURL ?? "",
+              shape: BoxShape.circle,
+            ),
           ],
         ),
       ],
