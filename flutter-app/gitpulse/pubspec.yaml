@@ -60,6 +60,7 @@ dependencies:
   image_picker: ^1.0.7
   package_info_plus: ^8.0.0
   syncfusion_flutter_datagrid:
+  github: ^9.25.0
 
 
 
